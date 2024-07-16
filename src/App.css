@@ -1,0 +1,64 @@
+.results-div {
+  margin-top: 40px;
+}
+.results-stat,
+.error {
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  letter-spacing: 5px;
+  font-family: monospace;
+}
+
+.searchbar {
+  row-gap: 15px;
+}
+
+.calculate-btn {
+  max-width: 145px;
+  margin-inline: auto;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.name {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .calculate-btn {
+    max-width: unset;
+  }
+  .error {
+    justify-content: center;
+  }
+  .results-div {
+    text-align: center;
+  }
+}
+
+@media (min-width: 360px) {
+  .results-stat,
+  .error {
+    flex-direction: row;
+  }
+  .calculate-btn {
+    margin: unset;
+  }
+}
+
+@media (max-width: 360px) {
+  .filters-btn {
+    margin-inline: auto;
+  }
+}
+
+body {
+  padding-bottom: 200px;
+}

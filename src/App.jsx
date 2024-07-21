@@ -1,5 +1,6 @@
 import './App.css';
 import { Navbar, Footer, MainContent } from './sections';
+import { Analytics } from '@vercel/analytics/react';
 
 const App = () => {
   return (
@@ -7,6 +8,7 @@ const App = () => {
       <Navbar />
       <MainContent />
       <Footer />
+      <Analytics />
     </>
   );
 };

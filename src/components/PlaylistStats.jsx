@@ -8,9 +8,16 @@ import Filters from './Filters';
 const PlaylistStats = () => {
   const { playlistID } = useContext(AppContext);
   const [data, isLoading, isError] = useFetch(playlistID);
+  const [localData, setLocalData] = useState(data);
   const [watched, setWatched] = useState(0);
-  const remainingTime = data.slice(watched);
-  const filterProps = { setWatched, dataSize: data.length };
+  const remainingTime = localData.slice(watched);
+  const filterProps = { setWatched, originalData: data, setLocalData, localData };
+
+
+  useEffect(() => {
+    setLocalData(data)
+  }, [data])
+
 
   if (isLoading) {
     return <Loading />;
@@ -25,12 +32,12 @@ const PlaylistStats = () => {
       <Filters {...filterProps} />
       <p className="results-stat">
         No of Videos&nbsp;:&nbsp;&nbsp;
-        <span className="text-warning">{data.length}</span>
+        <span className="text-warning">{localData.length}</span>
       </p>
-      <PlaylistStat label={'Total Time'} timestamps={data} />
+      <PlaylistStat label={'Total Time'} timestamps={localData} />
       <PlaylistStat
         label={'Watched Time'}
-        timestamps={data.slice(0, watched)}
+        timestamps={localData.slice(0, watched)}
       />
       <PlaylistStat label={'Remaining Time'} timestamps={remainingTime} />
       <PlaylistStat

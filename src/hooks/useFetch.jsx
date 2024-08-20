@@ -12,7 +12,7 @@ const useFetch = playlistId => {
       setIsLoading(true);
       setIsError(false);
       try {
-        const res = await fetch(`${API_BASE_URL}/api/playlist/duration`, {
+        const res = await fetch(`${API_BASE_URL}/playlist/duration`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+const API_BASE_URL = 'https://playlist-pal-api.vercel.app/api';
+
 const useFetch = playlistId => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +12,7 @@ const useFetch = playlistId => {
       setIsLoading(true);
       setIsError(false);
       try {
-        const res = await fetch('/api/playlist/duration', {
+        const res = await fetch(`${API_BASE_URL}/api/playlist/duration`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

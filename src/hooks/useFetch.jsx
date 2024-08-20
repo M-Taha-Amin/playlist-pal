@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const useFetch = playlistId => {
@@ -11,13 +10,18 @@ const useFetch = playlistId => {
       setIsLoading(true);
       setIsError(false);
       try {
-        const res = await axios.get(import.meta.env.VITE_API_URL, {
-          params: {
+        const res = await fetch('/api/playlist/duration', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
             apiKey: import.meta.env.VITE_API_KEY,
             playlistId,
-          },
+          }),
         });
-        setData(res.data);
+        const data = await res.json();
+        setData(data);
       } catch (err) {
         setIsError(true);
       } finally {
